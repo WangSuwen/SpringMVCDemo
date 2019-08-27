@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zzu.mapper.DeviceMaintenanceDailyDoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zzu.domain.DeviceMaintainInfoDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="worker_name" property="workerName" jdbcType="VARCHAR" />
+    <result column="worker_id" property="workerId" jdbcType="VARCHAR" />
+    <result column="contact_no" property="contactNo" jdbcType="VARCHAR" />
+    <result column="maintenance_date" property="maintenanceDate" jdbcType="VARCHAR" />
+    <result column="maintenance_content" property="maintenanceContent" jdbcType="VARCHAR" />
+    <result column="maintenance_cost" property="maintenanceCost" jdbcType="VARCHAR" />
+    <result column="maintenance_level" property="maintenanceLevel" jdbcType="VARCHAR" />
+    <result column="maintenance_desc" property="maintenanceDesc" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, device_name, worker_name, worker_id, contact_no, maintenance_date,maintenance_content , maintenance_cost, maintenance_level,
+    maintenance_desc, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_maintenance_daily
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_maintenance_daily
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="cn.edu.zzu.domain.DeviceMaintainInfoDo" >
+    insert into device_maintenance_daily
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="workerName != null" >
+        worker_name,
+      </if>
+      <if test="workerId != null" >
+        worker_id,
+      </if>
+      <if test="contactNo != null" >
+        contact_no,
+      </if>
+      <if test="maintenanceDate != null" >
+        maintenance_date,
+      </if>
+      <if test="maintenanceContent != null" >
+        maintenance_content,
+      </if>
+      <if test="maintenanceCost != null" >
+        maintenance_cost,
+      </if>
+      <if test="maintenanceLevel != null" >
+        maintenance_level,
+      </if>
+      <if test="maintenanceDesc != null" >
+        maintenance_desc,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="workerName != null" >
+        #{workerName,jdbcType=VARCHAR},
+      </if>
+      <if test="workerId != null" >
+        #{workerId,jdbcType=VARCHAR},
+      </if>
+
+      <if test="contactNo != null" >
+        #{contactNo,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceDate != null" >
+      #{maintenanceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceContent != null" >
+        #{maintenanceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceCost != null" >
+        #{maintenanceCost,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceLevel != null" >
+        #{maintenanceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceDesc != null" >
+        #{maintenanceDesc,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="select" parameterType="cn.edu.zzu.param.DeviceMaintainInfoParam" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from device_maintenance_daily
+    where device_id = #{deviceId,jdbcType=VARCHAR}
+    order by id desc
+    limit #{offset, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER}
+  </select>
+
+</mapper>

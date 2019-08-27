@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zzu.mapper.DevicePurchaseExpenseDoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zzu.domain.DevicePurchaseExpenseDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="purchase_expense" property="purchaseExpense" jdbcType="INTEGER" />
+    <result column="freight_expense" property="freightExpense" jdbcType="INTEGER" />
+    <result column="purchase_date_int" property="purchaseDateInt" jdbcType="INTEGER" />
+    <result column="provider_id" property="providerId" jdbcType="VARCHAR" />
+    <result column="provider_name" property="providerName" jdbcType="VARCHAR" />
+    <result column="purchase_contract" property="purchaseContract" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, device_name, purchase_expense, freight_expense, purchase_date_int, 
+    provider_id, provider_name, purchase_contract, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_purchase_expense
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_purchase_expense
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zzu.domain.DevicePurchaseExpenseDo" >
+    insert into device_purchase_expense (id, device_id, device_name, 
+      purchase_expense, freight_expense, purchase_date_int, 
+      provider_id, provider_name, purchase_contract, 
+      gmt_create, gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, 
+      #{purchaseExpense,jdbcType=INTEGER}, #{freightExpense,jdbcType=INTEGER}, #{purchaseDateInt,jdbcType=INTEGER}, 
+      #{providerId,jdbcType=VARCHAR}, #{providerName,jdbcType=VARCHAR}, #{purchaseContract,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zzu.domain.DevicePurchaseExpenseDo" >
+    insert into device_purchase_expense
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="purchaseExpense != null" >
+        purchase_expense,
+      </if>
+      <if test="freightExpense != null" >
+        freight_expense,
+      </if>
+      <if test="purchaseDateInt != null" >
+        purchase_date_int,
+      </if>
+      <if test="providerId != null" >
+        provider_id,
+      </if>
+      <if test="providerName != null" >
+        provider_name,
+      </if>
+      <if test="purchaseContract != null" >
+        purchase_contract,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseExpense != null" >
+        #{purchaseExpense,jdbcType=INTEGER},
+      </if>
+      <if test="freightExpense != null" >
+        #{freightExpense,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDateInt != null" >
+        #{purchaseDateInt,jdbcType=INTEGER},
+      </if>
+      <if test="providerId != null" >
+        #{providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseContract != null" >
+        #{purchaseContract,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zzu.domain.DevicePurchaseExpenseDo" >
+    update device_purchase_expense
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseExpense != null" >
+        purchase_expense = #{purchaseExpense,jdbcType=INTEGER},
+      </if>
+      <if test="freightExpense != null" >
+        freight_expense = #{freightExpense,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseDateInt != null" >
+        purchase_date_int = #{purchaseDateInt,jdbcType=INTEGER},
+      </if>
+      <if test="providerId != null" >
+        provider_id = #{providerId,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        provider_name = #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseContract != null" >
+        purchase_contract = #{purchaseContract,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zzu.domain.DevicePurchaseExpenseDo" >
+    update device_purchase_expense
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      purchase_expense = #{purchaseExpense,jdbcType=INTEGER},
+      freight_expense = #{freightExpense,jdbcType=INTEGER},
+      purchase_date_int = #{purchaseDateInt,jdbcType=INTEGER},
+      provider_id = #{providerId,jdbcType=VARCHAR},
+      provider_name = #{providerName,jdbcType=VARCHAR},
+      purchase_contract = #{purchaseContract,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

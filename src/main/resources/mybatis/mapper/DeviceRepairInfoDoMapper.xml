@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zzu.mapper.DeviceRepairInfoDoMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zzu.domain.RepairInfoDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="worker_name" property="workerName" jdbcType="VARCHAR" />
+    <result column="worker_id" property="workerId" jdbcType="VARCHAR" />
+    <result column="contact_no" property="contactNo" jdbcType="VARCHAR" />
+    <result column="contact_no" property="contactNo" jdbcType="VARCHAR" />
+    <result column="repair_date" property="repairDate" jdbcType="INTEGER" />
+    <result column="fault_reason" property="faultReason" jdbcType="VARCHAR" />
+    <result column="repair_content" property="repairContent" jdbcType="INTEGER" />
+    <result column="repair_cost" property="repairCost" jdbcType="INTEGER" />
+    <result column="repair_plan" property="repairPlan" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, device_name, worker_name, worker_id, contact_no, repair_date, fault_reason,
+    repair_content, repair_cost, status, repair_plan, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device_repair_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device_repair_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zzu.domain.RepairInfoDo" >
+    insert into device_repair_info (id, device_id, device_name, worker_name, worker_id,
+    contact_no, repair_date, fault_reason,
+    repair_content, repair_cost, status, repair_plan, gmt_create, gmt_modified, gmt_create,
+      gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR},
+    #{workerName,jdbcType=VARCHAR}, #{workerId,jdbcType=VARCHAR}, #{contactNo,jdbcType=VARCHAR},
+    #{repairDate,jdbcType=VARCHAR}, #{faultReason,jdbcType=VARCHAR}, #{repairContent,jdbcType=VARCHAR},
+    #{repairCost,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{repairPlan,jdbcType=VARCHAR},
+    #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zzu.domain.RepairInfoDo" >
+    insert into device_repair_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="workerName != null" >
+        worker_name,
+      </if>
+      <if test="workerId != null" >
+        worker_id,
+      </if>
+      <if test="contactNo != null" >
+          contact_no,
+      </if>
+      <if test="repairDate != null" >
+          repair_date,
+      </if>
+      <if test="faultReason != null" >
+          fault_reason,
+      </if>
+        <if test="repairContent != null" >
+            repair_content,
+        </if>
+        <if test="repairCost != null" >
+            repair_cost,
+        </if>
+        <if test="status != null" >
+            status,
+        </if>
+        <if test="repairPlan != null" >
+            repair_plan,
+        </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+        <if test="workerName != null" >
+            #{workerName,jdbcType=VARCHAR},
+        </if>
+        <if test="workerId != null" >
+            #{workerId,jdbcType=VARCHAR},
+        </if>
+        <if test="contactNo != null" >
+            #{contactNo,jdbcType=VARCHAR},
+
+        </if>
+        <if test="repairDate != null" >
+            #{repairDate,jdbcType=VARCHAR},
+        </if>
+        <if test="faultReason != null" >
+            #{faultReason,jdbcType=VARCHAR},
+        </if>
+        <if test="repairContent != null" >
+            #{repairContent,jdbcType=VARCHAR},
+
+        </if>
+        <if test="repairCost != null" >
+            #{repairCost,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null" >
+            #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="repairPlan != null" >
+            #{repairPlan,jdbcType=VARCHAR},
+        </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zzu.domain.RepairInfoDo" >
+    update device_repair_info
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="repairWorker != null" >
+        repair_worker = #{repairWorker,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDateInt != null" >
+        repair_date_int = #{repairDateInt,jdbcType=INTEGER},
+      </if>
+      <if test="troubleReason != null" >
+        trouble_reason = #{troubleReason,jdbcType=VARCHAR},
+      </if>
+      <if test="repairType != null" >
+        repair_type = #{repairType,jdbcType=INTEGER},
+      </if>
+      <if test="repairMethod != null" >
+        repair_method = #{repairMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zzu.domain.RepairInfoDo" >
+    update device_repair_info
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      repair_worker = #{repairWorker,jdbcType=VARCHAR},
+      repair_date_int = #{repairDateInt,jdbcType=INTEGER},
+      trouble_reason = #{troubleReason,jdbcType=VARCHAR},
+      repair_type = #{repairType,jdbcType=INTEGER},
+      repair_method = #{repairMethod,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="select" parameterType="cn.edu.zzu.param.RepairInfoParam" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from device_repair_info
+    where device_id = #{deviceId,jdbcType=VARCHAR}
+    order by id desc
+    limit #{offset, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER}
+  </select>
+</mapper>
